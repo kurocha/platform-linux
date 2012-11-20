@@ -3,25 +3,23 @@
 #  This file is part of the "Teapot" project, and is released under the MIT license.
 #
 
-required_version "0.1"
+required_version "0.2"
 
 define_platform "linux" do |platform|
 	platform.configure do
 		platform_path Pathname.new("/")
 		
-		default architectures ["-arch i386", "-arch x86_64"]
+		default architectures []
 		
-		buildflags {[
-			architectures
-		]}
+		buildflags [
+			:architectures
+		]
 		
-		cflags {[
-			buildflags
-		]}
-
-		cxxflags {[
-			buildflags
-		]}
+		linkflags []
+		
+		ccflags [:buildflags]
+		cxxflags [:buildflags]
+		ldflags [:buildflags, :linkflags]
 		
 		configure []
 	end
