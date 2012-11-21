@@ -7,7 +7,8 @@ required_version "0.2"
 
 define_target "linux" do |target|
 	target.provides "Platform/linux" do
-		platform_path Pathname.new("/")
+		default platform_name "linux"
+		default platform_path Pathname.new("/")
 		
 		default architectures []
 		
@@ -22,8 +23,13 @@ define_target "linux" do |target|
 		ldflags [:buildflags, :linkflags]
 		
 		configure []
+		
+		default cc "gcc"
+		default cxx "g++"
 	end
 	
+	target.depends :variant
+
 	target.provides :platform => "Platform/linux"
 	
 	target.depends "Aggregate/OpenGL/Headers"
@@ -34,6 +40,14 @@ define_target "linux" do |target|
 	
 	target.provides "Library/OpenAL" do
 		append linkflags "-lAL"
+	end
+
+	target.provides "Library/z" do
+		append linkflags "-lz"
+	end
+
+	target.provides "Library/bz2" do
+		append linkflags "-lbz2"
 	end
 	
 	target.provides "Language/C++11" do
