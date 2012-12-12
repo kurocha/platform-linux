@@ -24,8 +24,8 @@ define_target "linux" do |target|
 		
 		configure []
 		
-		default cc "gcc"
-		default cxx "g++"
+		default cc "clang"
+		default cxx "clang++"
 	end
 	
 	target.depends :variant
@@ -53,4 +53,9 @@ define_target "linux" do |target|
 	target.provides "Language/C++11" do
 		cxxflags %W{-std=c++11 -Wno-c++11-narrowing}
 	end
+	
+	target.provides "Aggregate/Display" do
+		append linkflags ["-lX11", "-lGL"]
+	end
 end
+
