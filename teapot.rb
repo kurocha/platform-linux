@@ -3,7 +3,7 @@
 #  This file is part of the "Teapot" project, and is released under the MIT license.
 #
 
-required_version "0.2"
+required_version "0.6"
 
 define_target "linux" do |target|
 	target.provides "Platform/linux" do
