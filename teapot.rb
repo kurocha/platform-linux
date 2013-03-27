@@ -32,12 +32,6 @@ define_target "linux" do |target|
 
 	target.provides :platform => "Platform/linux"
 	
-	target.depends "Aggregate/OpenGL/Headers"
-	
-	target.provides "Library/OpenGL" do
-		append linkflags "-lGL"
-	end
-	
 	target.provides "Library/OpenAL" do
 		append linkflags "-lAL"
 	end
@@ -53,9 +47,16 @@ define_target "linux" do |target|
 	target.provides "Language/C++11" do
 		cxxflags %W{-std=c++11 -Wno-c++11-narrowing}
 	end
+end
+
+define_target "linux-x11" do |target|
+	target.depends "Aggregate/OpenGL/Headers"
 	
 	target.provides "Aggregate/Display" do
 		append linkflags ["-lX11", "-lGL"]
 	end
+	
+	target.provides "Library/OpenGL" do
+		append linkflags "-lGL"
+	end
 end
-
