@@ -5,7 +5,7 @@
 
 required_version "0.7.0"
 
-define_target "linux" do |target|
+define_target "platform-linux" do |target|
 	target.provides "Platform/linux" do
 		default platform_name "linux"
 		default platform_path Pathname.new("/")
@@ -23,12 +23,11 @@ define_target "linux" do |target|
 		ldflags [:buildflags, :linkflags]
 		
 		configure []
-		
-		default cc "clang"
-		default cxx "clang++"
 	end
 	
 	target.depends :variant
+	
+	target.depends :compiler
 
 	target.provides :platform => "Platform/linux"
 	
@@ -47,6 +46,33 @@ define_target "linux" do |target|
 	target.provides "Language/C++11" do
 		cxxflags %W{-std=c++11 -Wno-c++11-narrowing}
 	end
+end
+
+define_target "compiler-clang" do |target|
+	target.provides "Compiler/clang" do
+		default cc "clang"
+		default cxx "clang++"
+	end
+	
+	target.provides :compiler => "Compiler/clang"
+end
+
+define_target "compiler-gcc-4.8" do |target|
+	target.provides "Compiler/gcc-4.8" do
+		default cc "gcc-4.8"
+		default cxx "g++-4.8"
+	end
+	
+	target.provides :compiler => "Compiler/gcc-4.8"
+end
+
+define_target "compiler-clang-3.2" do |target|
+	target.provides "Compiler/clang-3.2" do
+		default cc "clang-3.2"
+		default cxx "clang++-3.2"
+	end
+	
+	target.provides :compiler => "Compiler/clang-3.2"
 end
 
 define_target "linux-x11" do |target|
