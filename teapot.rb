@@ -20,7 +20,7 @@ define_target "platform-linux" do |target|
 		
 		cflags [:buildflags]
 		cxxflags [:buildflags]
-		ldflags [:buildflags, :linkflags]
+		ldflags [:buildflags, lambda {linkflags.reverse}]
 		
 		configure []
 	end
@@ -79,7 +79,7 @@ define_target "linux-x11" do |target|
 	target.depends "Aggregate/OpenGL/Headers"
 	
 	target.provides "Aggregate/Display" do
-		append linkflags ["-lX11", "-lGL"]
+		append linkflags ["-lX11"]
 	end
 	
 	target.provides "Library/OpenGL" do
