@@ -32,7 +32,7 @@ define_target "platform-linux" do |target|
 	target.provides :platform => "Platform/linux"
 	
 	target.provides "Library/OpenAL" do
-		append linkflags "-lAL"
+		append linkflags "-lopenal"
 	end
 
 	target.provides "Library/z" do
