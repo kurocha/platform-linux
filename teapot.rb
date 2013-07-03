@@ -52,6 +52,8 @@ define_target "compiler-clang" do |target|
 	target.provides "Compiler/clang" do
 		default cc "clang"
 		default cxx "clang++"
+		
+		append cxxflags "-D__GCC_HAVE_SYNC_COMPARE_AND_SWAP_"
 	end
 	
 	target.provides :compiler => "Compiler/clang"
@@ -69,7 +71,7 @@ end
 define_target "compiler-clang-3.2" do |target|
 	target.provides "Compiler/clang-3.2" do
 		default cc "clang-3.2"
-		default cxx "clang++-3.2"
+		default cxx "clang++-3.2"	
 	end
 	
 	target.provides :compiler => "Compiler/clang-3.2"
