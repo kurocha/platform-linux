@@ -49,6 +49,9 @@ define_target "platform-linux" do |target|
 end
 
 define_target "compiler-clang" do |target|
+	# The default compiler for linux unless an explicit one is specified:
+	target.priority = 10
+	
 	target.provides "Compiler/clang" do
 		default cc "clang"
 		default cxx "clang++"
@@ -57,24 +60,6 @@ define_target "compiler-clang" do |target|
 	end
 	
 	target.provides :compiler => "Compiler/clang"
-end
-
-define_target "compiler-gcc-4.8" do |target|
-	target.provides "Compiler/gcc-4.8" do
-		default cc "gcc-4.8"
-		default cxx "g++-4.8"
-	end
-	
-	target.provides :compiler => "Compiler/gcc-4.8"
-end
-
-define_target "compiler-clang-3.2" do |target|
-	target.provides "Compiler/clang-3.2" do
-		default cc "clang-3.2"
-		default cxx "clang++-3.2"	
-	end
-	
-	target.provides :compiler => "Compiler/clang-3.2"
 end
 
 define_target "linux-x11" do |target|
