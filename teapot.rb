@@ -42,10 +42,6 @@ define_target "platform-linux" do |target|
 	target.provides "Library/bz2" do
 		append linkflags "-lbz2"
 	end
-	
-	target.provides "Language/C++11" do
-		cxxflags %W{-std=c++11 -Wno-c++11-narrowing}
-	end
 end
 
 define_target "compiler-clang" do |target|
