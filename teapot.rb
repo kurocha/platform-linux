@@ -13,7 +13,8 @@ define_target "platform-linux" do |target|
 		default architectures []
 		
 		buildflags [
-			:architectures
+			:architectures,
+			"-fPIC"
 		]
 		
 		linkflags []
@@ -56,7 +57,7 @@ define_target "compiler-clang" do |target|
 		default cc "clang"
 		default cxx "clang++"
 		
-		append cxxflags "-D__GCC_HAVE_SYNC_COMPARE_AND_SWAP_"
+		# append cxxflags "-D__GCC_HAVE_SYNC_COMPARE_AND_SWAP_"
 	end
 	
 	target.provides :compiler => "Compiler/clang"
