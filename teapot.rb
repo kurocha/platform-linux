@@ -54,10 +54,8 @@ define_target "compiler-clang" do |target|
 	target.priority = 10
 	
 	target.provides "Compiler/clang" do
-		default cc "clang"
-		default cxx "clang++"
-		
-		# append cxxflags "-D__GCC_HAVE_SYNC_COMPARE_AND_SWAP_"
+		default cc ENV.fetch('CC', "clang")
+		default cxx ENV.fetch('CXX', "clang++")
 	end
 	
 	target.provides :compiler => "Compiler/clang"
