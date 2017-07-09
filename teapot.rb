@@ -49,6 +49,18 @@ define_target "platform-linux" do |target|
 	end
 end
 
+define_target "compiler-gcc" do |target|
+	# The default compiler for linux unless an explicit one is specified:
+	target.priority = 5
+	
+	target.provides "Compiler/clang" do
+		default cc ENV.fetch('CC', "gcc")
+		default cxx ENV.fetch('CXX', "g++")
+	end
+	
+	target.provides :compiler => "Compiler/clang"
+end
+
 define_target "compiler-clang" do |target|
 	# The default compiler for linux unless an explicit one is specified:
 	target.priority = 10
@@ -56,23 +68,12 @@ define_target "compiler-clang" do |target|
 	target.provides "Compiler/clang" do
 		default cc ENV.fetch('CC', "clang")
 		default cxx ENV.fetch('CXX', "clang++")
-	end
-	
-	target.provides :compiler => "Compiler/clang"
-end
-
-define_target "compiler-clang-libc++" do |target|
-	target.priority = 20
-	
-	target.provides "Compiler/clang/libc++" do
-		default cc ENV.fetch('CC', "clang")
-		default cxx ENV.fetch('CXX', "clang++")
 		
 		append cxxflags "-stdlib=libc++"
 		append ldflags "-lc++"
 	end
 	
-	target.provides :compiler => "Compiler/clang/libc++"
+	target.provides :compiler => "Compiler/clang"
 end
 
 define_target "linux-x11" do |target|
