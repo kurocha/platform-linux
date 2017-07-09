@@ -56,6 +56,9 @@ define_target "compiler-clang" do |target|
 	target.provides "Compiler/clang" do
 		default cc ENV.fetch('CC', "clang")
 		default cxx ENV.fetch('CXX', "clang++")
+		
+		cxxflags ["-stdlib=libc++"]
+		linkflags ["-lc++"]
 	end
 	
 	target.provides :compiler => "Compiler/clang"
