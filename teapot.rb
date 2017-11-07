@@ -50,7 +50,6 @@ define_target "platform-linux" do |target|
 end
 
 define_target "compiler-gcc" do |target|
-	# The default compiler for linux unless an explicit one is specified:
 	target.priority = 5
 	
 	target.provides "Compiler/clang" do
