@@ -3,7 +3,7 @@
 #  This file is part of the "Teapot" project, and is released under the MIT license.
 #
 
-teapot_version "1.0.0"
+teapot_version "3.0"
 
 define_target "platform-linux" do |target|
 	target.provides "Platform/linux" do
@@ -26,10 +26,9 @@ define_target "platform-linux" do |target|
 		configure []
 	end
 	
-	target.depends :variant
+	target.depends :variant, public: true
+	target.depends :compiler, public: true
 	
-	target.depends :compiler
-
 	target.provides :platform => "Platform/linux"
 	
 	target.provides "Library/OpenAL" do
