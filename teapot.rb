@@ -46,6 +46,10 @@ define_target "platform-linux" do |target|
 	target.provides "Library/dl" do
 		append linkflags "-ldl"
 	end
+	
+	target.provides "Library/m" do
+		append linkflags "-lm"
+	end
 end
 
 define_target "compiler-gcc" do |target|
