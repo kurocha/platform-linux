@@ -55,12 +55,12 @@ end
 define_target "compiler-gcc" do |target|
 	target.priority = 5
 	
-	target.provides "Compiler/clang" do
+	target.provides "Compiler/gcc" do
 		default cc ENV.fetch('CC', "gcc")
 		default cxx ENV.fetch('CXX', "g++")
 	end
 	
-	target.provides :compiler => "Compiler/clang"
+	target.provides :compiler => "Compiler/gcc"
 end
 
 define_target "compiler-clang" do |target|
@@ -70,9 +70,6 @@ define_target "compiler-clang" do |target|
 	target.provides "Compiler/clang" do
 		default cc ENV.fetch('CC', "clang")
 		default cxx ENV.fetch('CXX', "clang++")
-		
-		append cxxflags "-stdlib=libc++"
-		append ldflags "-lc++"
 	end
 	
 	target.provides :compiler => "Compiler/clang"
